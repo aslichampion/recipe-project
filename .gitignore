@@ -1,0 +1,8 @@
+# Ignores Python virtual environment folder
+/venv
+
+# Ignores any workspace VSCode settings
+/.vscode
+
+# Ignores pycache files in any directories
+**__pycache__/
