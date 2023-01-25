@@ -1,10 +1,55 @@
-<!DOCTYPE html>
-<html lang="en-GB">
-  <head>
-    <meta charset="utf-8" />
-    <title>My home page</title>
-  </head>
-  <body>
-    <p>This is my home page</p>
-  </body>
+<!doctype html>
+<html>
+    <head>
+        <title>Hello</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div id="title">
+            <h1>Recipe Generator</h1>
+        </div>
+        <div id="main">
+            <div id="header" class="padding">
+                <div id="preferences">
+                    <h3>Preferences</h3>
+                </div>
+                <div id="health_labels">
+                    <form id="health">
+                        <div class="padding">
+                            <input type="checkbox" id="vegetarian" name="vegetarian" value="Vegetarian">
+                            <label for="vegetarian">Vegetarian</label>
+                            <input type="checkbox" id="vegan" name="vegan" value="Vegan">
+                            <label for="vegan">Vegan</label>
+                        </div>
+                    </form>
+                </div>
+                <div id="get_recipes">
+                    <button id="get_recipes_button">Get New Recipes</button>
+                </div>
+            </div>
+            <div id="body">
+                <div id="recipes" class="padding">
+                    <h3>Recipes</h3>
+                    <div id="recipe">
+                        <div id="recipe_title">Recipe</div>
+                        <div id="recipe_cuisine">Cuisine</div>
+                        <div id="recipe_buttons">
+                            <button id="recipe_button_like">Like</button>
+                            <button id="recipe_button_dislike">Dislike</button>
+                        </div>
+                    </div>
+                </div>
+                <div id="shopping_list" class="padding">
+                    <h3>Shopping List</h3>
+                    <div id="ingredient">
+                        <div id="ingredient_title">Ingredient</div>
+                        <div id="ingredient_quantity_measure">
+                            <div id="ingredient_quantity">100</div>
+                            <div id="ingredient_measure">g</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
 </html>

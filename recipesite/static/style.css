@@ -1,0 +1,97 @@
+/* IDs */
+
+#title {
+    display: grid;
+    justify-content: center; /* Remove this for full screen */
+}
+
+#main {
+    display: grid;
+    justify-content: center;
+}
+
+/* Preferences */
+
+#header {
+    display: grid;
+    grid-auto-flow: column;
+    align-items: center;
+    background-color: lightblue;
+}
+
+#preferences {
+    justify-self: start;
+}
+
+#health {
+    display: grid;
+    grid-auto-flow: column;
+    align-items: center;
+}
+
+#health_labels {
+    justify-self: center;
+}
+
+#get_recipes {
+    justify-self: end;
+}
+
+/* Body */
+
+#body {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+}
+
+#recipes {
+    background-color: lightsteelblue;
+    padding-bottom: 10px;
+}
+
+#recipe {
+    display: grid;
+    grid-auto-flow: column;
+    align-items: center;
+}
+
+#recipe_title {
+    justify-self: start;
+}
+
+#recipe_cuisine {
+    justify-self: start;
+}
+
+#recipe_buttons {
+    justify-self: end;
+}
+
+/* Shopping List */
+
+#shopping_list {
+    background-color: lightgrey;
+    padding-bottom: 10px;
+}
+
+#ingredient {
+    display: grid;
+    grid-auto-flow: column;
+}
+
+#ingredient_title {
+    justify-self: start;
+}
+
+#ingredient_quantity_measure {
+    display: grid;
+    grid-auto-flow: column;
+    justify-self: end;
+}
+
+/* CLASSES */
+
+.padding {
+    padding-left: 10px;
+    padding-right: 10px;
+}
