@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from django.template import loader
 import requests
 import json
+from decouple import config
 
 # Create your views here.
 
@@ -10,7 +11,7 @@ def recipes(request):
     return render(request, 'recipes/recipes.html')
 
 def getRecipe(request):
-    apiLink = "https://api.edamam.com/api/recipes/v2?type=public&app_id=96581904&app_key=17072af2421f3c49bd3544ed58bb75ab&health=vegetarian&mealType=Dinner&random=true"
+    apiLink = "https://api.edamam.com/api/recipes/v2?type=public&app_id={}&app_key={}&health=vegetarian&mealType=Dinner&random=true".format(config('API_ID'), config('API_KEY'))
     apiResponse = requests.get(apiLink)
     recipes = json.loads(apiResponse.text)
     recipeTitle = (recipes["hits"][0]["recipe"]["label"])
