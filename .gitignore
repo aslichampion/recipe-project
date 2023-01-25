@@ -1,8 +1,16 @@
-# Ignores Python virtual environment folder
+# Ignores Python virtual environment folder:
 /venv
 
-# Ignores any workspace VSCode settings
+# Ignores environemnt variable settings file:
+.env
+
+# Ignores any workspace VSCode settings:
 /.vscode
 
-# Ignores pycache files in any directories
+# Ignores pycache files in any directories:
 **__pycache__/
+
+# Ignores unnecessary Django stuff:
+*.log
+local_settings.py
+***/db.sqlite3
