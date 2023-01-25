@@ -24,7 +24,12 @@ This project uses Python and the popular web framework Django
 1. Create a Python virtual environment in the root of this repo with '$ python -m venv venv'
 2. Activate the virtual environment with '$ source venv/bin/activate'
 3. Install any dependencies with '$ pip install -r requirements.txt'
-4. ...
-5. ...
+4. To start the app for the first time, migrate info into the DB with '$ python manage.py migrate'
+5. Then, and on subsequent runs start the server with '$ python manage.py runserver'
+
+### Resources:
+https://www.edamam.com
 
 https://frankcorso.dev/setting-up-python-environment-venv-requirements.html
+
+https://docs.djangoproject.com
