@@ -25,8 +25,9 @@ This project uses Python and the popular web framework Django
 2. Create a Python virtual environment in the root of this repo with `$ python3 -m venv .venv`
 2. Activate the virtual environment with `$ source .venv/bin/activate`
 3. Install any dependencies with `$ pip3 install -r requirements.txt`
+3. Move into the Django project directory with `$ cd recipesite`
 4. To start the app for the first time, migrate info into the DB with `$ python3 manage.py migrate`
-5. Then, and on subsequent runs start the server with `$ python3 manage.py runserver`
+5. Then, and on subsequent runs, start the server with `$ python3 manage.py runserver` which should now be running on localhost:8000
 
 ### Resources:
 https://www.edamam.com
