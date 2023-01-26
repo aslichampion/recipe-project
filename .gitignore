@@ -1,8 +1,13 @@
+**/.DS_Store
+
 # Ignores Python virtual environment folder:
 .venv/
 
 # Ignores environemnt variable settings file:
-.env
+*.env
+
+# Allows example file only to be added to VC:
+!.example.env
 
 # Ignores any workspace VSCode settings:
 .vscode/
