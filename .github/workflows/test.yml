@@ -36,7 +36,9 @@ jobs:
           echo "${{ secrets.ENV_FILE }}" > .env
           cat .env
       - name: Connect to Postgres DB
-        run: python3 recipesite/manage.py migrate
+        run: |
+          createdb RECIPE_PROJECT
+          python3 recipesite/manage.py migrate
         env:
           POSTGRES_HOST: localhost
           POSTGRES_PORT: 5432
