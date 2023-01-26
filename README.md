@@ -14,8 +14,8 @@
 ## How does it do it?
 
 * Currently uses the Edamam API to source recipe content.
-* talk about recommendation engine stuff here.
-* and an explanation of the shopping list generation logic here.
+* Further details of recommendation engine will be added here as the feature is developed.
+* And an explanation of the shopping list generation logic will be added here as that gets developed too.
 
 ## How do I run it locally?
 
