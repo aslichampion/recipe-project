@@ -45,5 +45,5 @@ jobs:
           POSTGRES_PORT: 5432
       - name: Running unit tests
         run: |
-          pwd
-          python3 recipesite/manage.py test
+          cd recipesite
+          python3 manage.py test
