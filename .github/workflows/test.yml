@@ -11,6 +11,8 @@ jobs:
             image: postgres
             # Provide the password for postgres
             env:
+              POSTGRES_DB: RECIPE_PROJECT
+              POSTGRES_USER: postgres
               POSTGRES_PASSWORD: postgres
             # Set health checks to wait until postgres has started
             options: >-
@@ -37,7 +39,6 @@ jobs:
           cat .env
       - name: Connect to Postgres DB
         run: |
-          createdb RECIPE_PROJECT
           python3 recipesite/manage.py migrate
         env:
           POSTGRES_HOST: localhost
