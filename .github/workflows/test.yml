@@ -44,4 +44,6 @@ jobs:
           POSTGRES_HOST: localhost
           POSTGRES_PORT: 5432
       - name: Running unit tests
-        run: python3 recipesite/manage.py test
+        run: |
+          pwd
+          python3 recipesite/manage.py test
