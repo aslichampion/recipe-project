@@ -25,7 +25,7 @@ This project uses Python and the popular web framework Django
 2. Create a Python virtual environment in the root of this repo with `$ python3 -m venv .venv`
 3. Activate the virtual environment with `$ source .venv/bin/activate`
 4. Install any dependencies with `$ pip3 install -r requirements.txt`
-5. Create a file called `.env` in the repo root to set the required keys which are in the repo's `.env_example` file.
+5. Create a file called `.env` in the repo root to set the required keys which are in the repo's `.example.env` file.
 6. Move into the Django project directory with `$ cd recipesite`
 7. Create a PostgreSQL database locally using the command `$ createdb RECIPE_PROJECT`
 8. Ensure you have a user for the PostgreSQL database with permission to create databases. Guidance on adding a users can be found in the resources below.

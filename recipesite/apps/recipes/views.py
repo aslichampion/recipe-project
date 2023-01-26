@@ -32,9 +32,6 @@ def getRecipe(request):
         'recipeTitle7': recipeTitle7,
     }
     return HttpResponse(template.render(context, request))
-    
-    
-    # return render(request, 'recipes/recipes.html')
 
 # print(getRecipe())
 # recipe1 = getRecipe()
