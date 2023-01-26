@@ -3,7 +3,7 @@ on: push
 jobs:
   test-job:
     runs-on: ubuntu-latest
-
+    environment: testing
     services:
           # Label used to access the service container
           postgres:
