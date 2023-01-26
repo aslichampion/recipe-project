@@ -1,0 +1,49 @@
+name: Tests
+on: push
+jobs:
+  test-job:
+    runs-on: ubuntu-latest
+    environment: testing
+    services:
+          # Label used to access the service container
+          postgres:
+            # Docker Hub image
+            image: postgres
+            # Provide the password for postgres
+            env:
+              POSTGRES_DB: RECIPE_PROJECT
+              POSTGRES_USER: postgres
+              POSTGRES_PASSWORD: postgres
+            # Set health checks to wait until postgres has started
+            options: >-
+              --health-cmd pg_isready
+              --health-interval 10s
+              --health-timeout 5s
+              --health-retries 5
+            ports:
+              # Maps tcp port 5432 on service container to the host
+              - 5432:5432
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11.1'
+          cache: 'pip'
+      - name: Installing dependencies with pip
+        run: pip install -r requirements.txt
+      - name: Create env file
+        run: |
+          echo "${{ secrets.ENV_FILE }}" > .env
+          cat .env
+      - name: Connect to Postgres DB
+        run: |
+          python3 recipesite/manage.py migrate
+        env:
+          POSTGRES_HOST: localhost
+          POSTGRES_PORT: 5432
+      - name: Running unit tests
+        run: |
+          cd recipesite
+          python3 manage.py test
