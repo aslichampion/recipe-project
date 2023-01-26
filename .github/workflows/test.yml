@@ -31,6 +31,9 @@ jobs:
           cache: 'pip'
       - name: Installing dependencies with pip
         run: pip install -r requirements.txt
+      - name: Create env file
+        run: |
+          echo "${{ secrets.ENV_FILE }}" > .env
       - name: Connect to Postgres DB
         run: python3 recipesite/manage.py migrate
         env:
