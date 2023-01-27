@@ -4,32 +4,49 @@ from django.template import loader
 import requests
 import json
 from decouple import config
+from main.models import User
 
 # Create your views here.
 
 def recipes(request):
     return render(request, 'recipes/recipes.html')
 
+# def getRecipe(request):
+#     apiLink = "https://api.edamam.com/api/recipes/v2?type=public&app_id={}&app_key={}&health=vegetarian&mealType=Dinner&random=true".format(config('API_ID'), config('API_KEY'))
+#     apiResponse = requests.get(apiLink)
+#     recipes = json.loads(apiResponse.text)
+#     recipeTitle1 = (recipes["hits"][0]["recipe"]["label"])
+#     recipeTitle2 = (recipes["hits"][1]["recipe"]["label"])
+#     recipeTitle3 = (recipes["hits"][2]["recipe"]["label"])
+#     recipeTitle4 = (recipes["hits"][3]["recipe"]["label"])
+#     recipeTitle5 = (recipes["hits"][4]["recipe"]["label"])
+#     recipeTitle6 = (recipes["hits"][5]["recipe"]["label"])
+#     recipeTitle7 = (recipes["hits"][6]["recipe"]["label"])
+#     template = loader.get_template('recipes/recipes.html')
+#     context = {
+#         'recipeTitle1': recipeTitle1,
+#         'recipeTitle2': recipeTitle2,
+#         'recipeTitle3': recipeTitle3,
+#         'recipeTitle4': recipeTitle4,
+#         'recipeTitle5': recipeTitle5,
+#         'recipeTitle6': recipeTitle6,
+#         'recipeTitle7': recipeTitle7,
+#     }
+#     return HttpResponse(template.render(context, request))
+
+
 def getRecipe(request):
-    apiLink = "https://api.edamam.com/api/recipes/v2?type=public&app_id={}&app_key={}&health=vegetarian&mealType=Dinner&random=true".format(config('API_ID'), config('API_KEY'))
-    apiResponse = requests.get(apiLink)
-    recipes = json.loads(apiResponse.text)
-    recipeTitle1 = (recipes["hits"][0]["recipe"]["label"])
-    recipeTitle2 = (recipes["hits"][1]["recipe"]["label"])
-    recipeTitle3 = (recipes["hits"][2]["recipe"]["label"])
-    recipeTitle4 = (recipes["hits"][3]["recipe"]["label"])
-    recipeTitle5 = (recipes["hits"][4]["recipe"]["label"])
-    recipeTitle6 = (recipes["hits"][5]["recipe"]["label"])
-    recipeTitle7 = (recipes["hits"][6]["recipe"]["label"])
+    
+    currentUser = User.objects.get(pk=1) #User.current_week_recipes["hits"][0]["recipe"]["label"]
+    
+    currentUser.current_week_recipes = "test overwriting JSON"
+    currentUser.save()
+
+    recipeTitle1 = currentUser.current_week_recipes #.hits[0].recipe.label
+
     template = loader.get_template('recipes/recipes.html')
     context = {
         'recipeTitle1': recipeTitle1,
-        'recipeTitle2': recipeTitle2,
-        'recipeTitle3': recipeTitle3,
-        'recipeTitle4': recipeTitle4,
-        'recipeTitle5': recipeTitle5,
-        'recipeTitle6': recipeTitle6,
-        'recipeTitle7': recipeTitle7,
     }
     return HttpResponse(template.render(context, request))
 
