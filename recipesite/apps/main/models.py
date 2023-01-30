@@ -6,4 +6,3 @@ class User(models.Model):
     last_name = models.CharField(max_length=50)
     username = models.CharField(max_length=50)
     password = models.CharField(max_length=50)
-    current_week_recipes = models.JSONField()
