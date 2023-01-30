@@ -34,7 +34,7 @@
                     {% for hit in weeklyRecipes.hits|slice:":7" %}
                     <div id="recipe_{{ forloop.counter }}">
                         <div id="recipe_title_{{ forloop.counter }}">{{ hit.recipe.label }}</div>
-                        <div id="recipe_cuisine_{{ forloop.counter }}">Cuisine</div>
+                        <div id="recipe_cuisine_{{ forloop.counter }}">{{ hit.recipe.cuisineType.0 }}</div>
                         <div id="recipe_buttons_{{ forloop.counter }}">
                             <button id="recipe_button_like_{{ forloop.counter }}">Like</button>
                             <button id="recipe_button_dislike_{{ forloop.counter }}">Dislike</button>
