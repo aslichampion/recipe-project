@@ -46,13 +46,27 @@
                 </div>
                 <div id="shopping_list" class="padding">
                     <h3>Shopping List</h3>
-                    <div id="ingredient">
+                    {% comment %} <div id="ingredient">
                         <div id="ingredient_title">Ingredient</div>
                         <div id="ingredient_quantity_measure">
                             <div id="ingredient_quantity">100</div>
                             <div id="ingredient_measure">g</div>
                         </div>
-                    </div>
+                    </div> {% endcomment %}
+
+                    {% for hit in weeklyRecipes.hits|slice:":7" %}
+                        {% for ingredient in hit.recipe.ingredients %}
+                            <div id="ingredient_{{ forloop.counter }}" class="ingredient">
+                                <div id="ingredient_title_{{ forloop.counter }}" class="ingredient_title">{{ ingredient.food }}</div>
+                                <div class="ingredient_quantity_measure">
+                                    <div id="ingredient_quantity_{{ forloop.counter }}">{{ ingredient.quantity }}</div>
+                                    <div id="ingredient_measure_{{ forloop.counter }}">{{ ingredient.measure }}</div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    {% empty %}
+                        No Ingredients
+                    {% endfor %}
                 </div>
             </div>
         </div>

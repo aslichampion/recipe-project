@@ -74,24 +74,30 @@
     padding-bottom: 10px;
 }
 
-#ingredient {
-    display: grid;
-    grid-auto-flow: column;
-}
 
-#ingredient_title {
-    justify-self: start;
-}
 
-#ingredient_quantity_measure {
-    display: grid;
-    grid-auto-flow: column;
-    justify-self: end;
-}
+
 
 /* CLASSES */
 
 .padding {
     padding-left: 10px;
     padding-right: 10px;
+}
+
+.ingredient {
+    display: grid;
+    grid-auto-flow: column;
+}
+
+.ingredient_title {
+    justify-self: start;
+    background-color: red;
+}
+
+.ingredient_quantity_measure {
+    display: grid;
+    grid-auto-flow: column;
+    justify-self: end;
+    background-color: yellow;
 }
