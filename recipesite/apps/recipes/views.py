@@ -60,6 +60,8 @@ def showRecipes(request):
     }
     return HttpResponse(template.render(context, request))
 
+# def toggleLike():
+
 # Testing route, access at recipes/test
 # def getRecipeTest(request):
 
