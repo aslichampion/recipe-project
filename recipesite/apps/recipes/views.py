@@ -4,50 +4,35 @@ from django.template import loader
 import requests
 import json
 from decouple import config
+from main.models import User
 
 # Create your views here.
 
 def recipes(request):
     return render(request, 'recipes/recipes.html')
 
+
 def getRecipe(request):
+
+    # Retrieve a week of recipes from the API
     apiLink = "https://api.edamam.com/api/recipes/v2?type=public&app_id={}&app_key={}&health=vegetarian&mealType=Dinner&random=true".format(config('API_ID'), config('API_KEY'))
     apiResponse = requests.get(apiLink)
     recipes = json.loads(apiResponse.text)
-    recipeTitle1 = (recipes["hits"][0]["recipe"]["label"])
-    recipeTitle2 = (recipes["hits"][1]["recipe"]["label"])
-    recipeTitle3 = (recipes["hits"][2]["recipe"]["label"])
-    recipeTitle4 = (recipes["hits"][3]["recipe"]["label"])
-    recipeTitle5 = (recipes["hits"][4]["recipe"]["label"])
-    recipeTitle6 = (recipes["hits"][5]["recipe"]["label"])
-    recipeTitle7 = (recipes["hits"][6]["recipe"]["label"])
+    
+    # Load the JSON recipes into the database, first user hardcoded for now
+    currentUser = User.objects.get(pk=1)
+    currentUser.current_week_recipes = recipes
+    currentUser.save()
+
+    # Retrieves the recipes from the database ready to be passed to the front end
+    recipeTitle1 = currentUser.current_week_recipes
+
+    # Loads the correct template and sets the variable name within the template as the 'context'
     template = loader.get_template('recipes/recipes.html')
     context = {
         'recipeTitle1': recipeTitle1,
-        'recipeTitle2': recipeTitle2,
-        'recipeTitle3': recipeTitle3,
-        'recipeTitle4': recipeTitle4,
-        'recipeTitle5': recipeTitle5,
-        'recipeTitle6': recipeTitle6,
-        'recipeTitle7': recipeTitle7,
     }
     return HttpResponse(template.render(context, request))
-
-# print(getRecipe())
-# recipe1 = getRecipe()
-# print(recipe1["label"])
-
-# print(recipes == apiResponse.json())
-# print(recipes["hits"][0]["recipe"]["label"])
-# print(recipes["hits"][0]["recipe"]["ingredientLines"])
-# print(recipes["hits"][0]["recipe"]["source"])
-# print(recipes["hits"][0]["recipe"]["url"])
-
-# print(recipes["hits"][0]["recipe"]["ingredients"][0]["food"])
-# print(recipes["hits"][0]["recipe"]["ingredients"][0]["measure"])
-# print(recipes["hits"][0]["recipe"]["ingredients"][0]["quantity"])
-# print(recipes["hits"][0]["recipe"]["ingredients"][0]["weight"])
-
 
 
 # url = "https://api.edamam.com/api/recipes/v2?type=public"
