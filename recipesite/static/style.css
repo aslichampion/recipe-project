@@ -92,12 +92,10 @@
 
 .ingredient_title {
     justify-self: start;
-    background-color: red;
 }
 
 .ingredient_quantity_measure {
     display: grid;
     grid-auto-flow: column;
     justify-self: end;
-    background-color: yellow;
 }
