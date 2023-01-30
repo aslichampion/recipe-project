@@ -31,62 +31,18 @@
             <div id="body">
                 <div id="recipes" class="padding">
                     <h3>Recipes</h3>
-                    <div id="recipe_1">
-                        <div id="recipe_title_1">{{ weeklyRecipes.hits.0.recipe.label }}</div>
-                        <div id="recipe_cuisine_1">Cuisine</div>
-                        <div id="recipe_buttons_1">
-                            <button id="recipe_button_like_1">Like</button>
-                            <button id="recipe_button_dislike_1">Dislike</button>
+                    {% for hit in weeklyRecipes.hits|slice:":7" %}
+                    <div id="recipe_{{ forloop.counter }}">
+                        <div id="recipe_title_{{ forloop.counter }}">{{ hit.recipe.label }}</div>
+                        <div id="recipe_cuisine_{{ forloop.counter }}">Cuisine</div>
+                        <div id="recipe_buttons_{{ forloop.counter }}">
+                            <button id="recipe_button_like_{{ forloop.counter }}">Like</button>
+                            <button id="recipe_button_dislike_{{ forloop.counter }}">Dislike</button>
                         </div>
                     </div>
-                    <div id="recipe_2">
-                      <div id="recipe_title_2">{{ weeklyRecipes.hits.1.recipe.label }}</div>
-                      <div id="recipe_cuisine_2">Cuisine</div>
-                      <div id="recipe_buttons_2">
-                          <button id="recipe_button_like_2">Like</button>
-                          <button id="recipe_button_dislike_2">Dislike</button>
-                      </div>
-                    </div>
-                    <div id="recipe_3">
-                      <div id="recipe_title_3">{{ recipeTitle3 }}</div>
-                      <div id="recipe_cuisine_3">Cuisine</div>
-                      <div id="recipe_buttons_3">
-                          <button id="recipe_button_like_3">Like</button>
-                          <button id="recipe_button_dislike_3">Dislike</button>
-                      </div>
-                    </div>
-                    <div id="recipe_4">
-                      <div id="recipe_title_4">{{ recipeTitle4 }}</div>
-                      <div id="recipe_cuisine_4">Cuisine</div>
-                      <div id="recipe_buttons_4">
-                          <button id="recipe_button_like_4">Like</button>
-                          <button id="recipe_button_dislike_4">Dislike</button>
-                      </div>
-                    </div>
-                    <div id="recipe_5">
-                      <div id="recipe_title_5">{{ recipeTitle5 }}</div>
-                      <div id="recipe_cuisine_5">Cuisine</div>
-                      <div id="recipe_buttons_5">
-                          <button id="recipe_button_like_5">Like</button>
-                          <button id="recipe_button_dislike_5">Dislike</button>
-                      </div>
-                    </div>
-                    <div id="recipe_6">
-                      <div id="recipe_title_6">{{ recipeTitle6 }}</div>
-                      <div id="recipe_cuisine_6">Cuisine</div>
-                      <div id="recipe_buttons_6">
-                          <button id="recipe_button_like_6">Like</button>
-                          <button id="recipe_button_dislike_6">Dislike</button>
-                      </div>
-                    </div>
-                    <div id="recipe_7">
-                      <div id="recipe_title_7">{{ recipeTitle7 }}</div>
-                      <div id="recipe_cuisine_7">Cuisine</div>
-                      <div id="recipe_buttons_7">
-                          <button id="recipe_button_like_7">Like</button>
-                          <button id="recipe_button_dislike_7">Dislike</button>
-                      </div>
-                    </div>
+                    {% empty %}
+                        No Recipes
+                    {% endfor %}
                 </div>
                 <div id="shopping_list" class="padding">
                     <h3>Shopping List</h3>
