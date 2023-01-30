@@ -24,13 +24,10 @@ def getRecipe(request):
     currentUser.current_week_recipes = recipes
     currentUser.save()
 
-    # Retrieves the recipes from the database ready to be passed to the front end
-    recipeTitle1 = currentUser.current_week_recipes
-
     # Loads the correct template and sets the variable name within the template as the 'context'
     template = loader.get_template('recipes/recipes.html')
     context = {
-        'recipeTitle1': recipeTitle1,
+        'weeklyRecipes': currentUser.current_week_recipes,
     }
     return HttpResponse(template.render(context, request))
 
