@@ -39,6 +39,7 @@ jobs:
           cat .env
       - name: Connect to Postgres DB
         run: |
+          python3 recipesite/manage.py makemigrations recipes
           python3 recipesite/manage.py migrate
         env:
           POSTGRES_HOST: localhost

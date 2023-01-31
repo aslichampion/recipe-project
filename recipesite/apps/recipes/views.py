@@ -1,43 +1,48 @@
-from django.shortcuts import render
-from django.http import HttpResponse
-from django.template import loader
 import requests
 import json
 from decouple import config
-from recipes.models import CurrentRecipes
-from recipes.models import History
-from main.models import User
-from django.shortcuts import redirect
+from django.shortcuts import render, redirect
+from django.http import HttpResponse
+from django.template import loader
+from recipes.models import CurrentRecipes, History
 
-# Create your views here.
 
-def saveHistory(currentUser, currentWeekRecipes):
+def saveHistory(user, recipes):
 
     # Loop to input separate recipe details into a user's history
     for i in range(7):
-        history = History(user_id=currentUser, 
-                          recipe_uri=currentWeekRecipes.current_week_recipes['hits'][i]['recipe']['uri'], 
-                          cuisine = currentWeekRecipes.current_week_recipes['hits'][i]['recipe']['cuisineType'][0]
+        history = History(user_id=user.id, 
+                          recipe_uri=recipes.current_week_recipes['hits'][i]['recipe']['uri'], 
+                          cuisine = recipes.current_week_recipes['hits'][i]['recipe']['cuisineType'][0]
                           )
         history.save()
 
+
 def getRecipes(request):
 
+    if not request.user.is_authenticated:
+        return redirect('/members/login')
+
     # Get user, later this will come from current session info
-    currentUser = User.objects.get(pk=1)
+    currentUser = request.user
 
     # Retrieve a week of recipes from the API
     apiLink = "https://api.edamam.com/api/recipes/v2?type=public&app_id={}&app_key={}&health=vegetarian&mealType=Dinner&random=true".format(config('API_ID'), config('API_KEY'))
     apiResponse = requests.get(apiLink)
     recipes = json.loads(apiResponse.text)
     
-    # Load the JSON recipes into the database, first user hardcoded for now
-    currentWeekRecipes = CurrentRecipes.objects.get(pk=1)
-    currentWeekRecipes.current_week_recipes = recipes
-    currentWeekRecipes.save()
-
-    # Adds recipes form current week, into user's history
-    saveHistory(currentUser, currentWeekRecipes)
+    # Load the JSON recipes into the database
+    if CurrentRecipes.objects.filter(user_id=currentUser.id).exists():
+        currentWeekRecipes = CurrentRecipes.objects.get(user_id=currentUser)
+        currentWeekRecipes.current_week_recipes=recipes
+        currentWeekRecipes.save()
+        # Adds recipes form current week, into user's history
+        saveHistory(currentUser, currentWeekRecipes)
+    else:
+        newWeekRecipes = CurrentRecipes(user_id=currentUser.id, current_week_recipes=recipes)
+        newWeekRecipes.save()
+        # Adds recipes form first week, into user's history
+        saveHistory(currentUser, newWeekRecipes)
 
     # Loads the correct template and sets the variable name within the template as the 'context'
     template = loader.get_template('recipes/recipes.html')
@@ -48,10 +53,15 @@ def getRecipes(request):
     # Redirects user back to showRecipe page so as to not overwrite the new recipes on page reload
     return redirect(showRecipes)
 
+
 def showRecipes(request):
 
+    if not request.user.is_authenticated:
+       return redirect('/members/login')
+
     # Getting current week recipes from database
-    currentWeekRecipes = CurrentRecipes.objects.get(pk=1)
+    currentUser = request.user
+    currentWeekRecipes = CurrentRecipes.objects.get(user_id = currentUser.id)
 
     # Loads the correct template and sets the variable name within the template as the 'context'
     template = loader.get_template('recipes/recipes.html')
@@ -59,6 +69,7 @@ def showRecipes(request):
         'weeklyRecipes': currentWeekRecipes.current_week_recipes,
     }
     return HttpResponse(template.render(context, request))
+
 
 # def toggleLike():
 
