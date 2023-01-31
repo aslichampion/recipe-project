@@ -6,7 +6,7 @@ import json
 from decouple import config
 from recipes.models import CurrentRecipes
 from recipes.models import History
-from main.models import User
+from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import redirect
 
 # Create your views here.
@@ -24,7 +24,9 @@ def saveHistory(currentUser, currentWeekRecipes):
 def getRecipes(request):
 
     # Get user, later this will come from current session info
-    currentUser = User.objects.get(pk=1)
+    currentUser = request.user
+    print(currentUser) #
+    print(currentUser.id) #
 
     # Retrieve a week of recipes from the API
     apiLink = "https://api.edamam.com/api/recipes/v2?type=public&app_id={}&app_key={}&health=vegetarian&mealType=Dinner&random=true".format(config('API_ID'), config('API_KEY'))
@@ -32,9 +34,14 @@ def getRecipes(request):
     recipes = json.loads(apiResponse.text)
     
     # Load the JSON recipes into the database, first user hardcoded for now
-    currentWeekRecipes = CurrentRecipes.objects.get(pk=1)
-    currentWeekRecipes.current_week_recipes = recipes
-    currentWeekRecipes.save()
+    if CurrentRecipes.objects.get(user_id_id=currentUser).DoesNotExist():
+        newWeekRecipes = CurrentRecipes(user_id_id=currentUser, current_week_recipes=recipes)
+        newWeekRecipes.save()
+        
+    else:
+        currentWeekRecipes = CurrentRecipes.objects.get(user_id_id=currentUser)
+        currentWeekRecipes.current_week_recipes=recipes
+        currentWeekRecipes.save()
 
     # Adds recipes form current week, into user's history
     saveHistory(currentUser, currentWeekRecipes)
@@ -51,7 +58,8 @@ def getRecipes(request):
 def showRecipes(request):
 
     # Getting current week recipes from database
-    currentWeekRecipes = CurrentRecipes.objects.get(pk=1)
+    currentUser = request.user
+    currentWeekRecipes = CurrentRecipes.objects.get(user_id_id = currentUser.id)
 
     # Loads the correct template and sets the variable name within the template as the 'context'
     template = loader.get_template('recipes/recipes.html')
