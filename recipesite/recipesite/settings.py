@@ -142,3 +142,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Overrides Django default login redirect to 'accounts/profile/'
 LOGIN_REDIRECT_URL = '/recipes'
+
+LOGIN_URL = '/members/login/'

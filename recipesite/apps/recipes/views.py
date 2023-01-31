@@ -1,13 +1,10 @@
-from django.shortcuts import render
-from django.http import HttpResponse
-from django.template import loader
 import requests
 import json
 from decouple import config
-from recipes.models import CurrentRecipes
-from recipes.models import History
-from django.contrib.auth import authenticate, login, logout
-from django.shortcuts import redirect
+from django.shortcuts import render, redirect
+from django.http import HttpResponse
+from django.template import loader
+from recipes.models import CurrentRecipes, History
 
 
 def saveHistory(user, recipes):
@@ -22,6 +19,9 @@ def saveHistory(user, recipes):
 
 
 def getRecipes(request):
+
+    if not request.user.is_authenticated:
+        return redirect('/members/login')
 
     # Get user, later this will come from current session info
     currentUser = request.user
@@ -55,6 +55,9 @@ def getRecipes(request):
 
 
 def showRecipes(request):
+
+    if not request.user.is_authenticated:
+       return redirect('/members/login')
 
     # Getting current week recipes from database
     currentUser = request.user
