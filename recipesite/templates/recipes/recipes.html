@@ -25,7 +25,7 @@
                     </form>
                 </div>
                 <div id="get_recipes">
-                    <button id="get_recipes_button" onClick="window.location.reload();">Get New Recipes</button>
+                    <button id="get_recipes_button" onClick="location.href='new'">Get New Recipes</button>
                 </div>
             </div>
             <div id="body">
@@ -36,8 +36,16 @@
                         <div id="recipe_title_{{ forloop.counter }}">{{ hit.recipe.label }}</div>
                         <div id="recipe_cuisine_{{ forloop.counter }}">{{ hit.recipe.cuisineType.0 }}</div>
                         <div id="recipe_buttons_{{ forloop.counter }}">
+                            {% if note.clear %}
                             <button id="recipe_button_like_{{ forloop.counter }}">Like</button>
+                            {% else %}
+                            <button id="recipe_button_clear_like_{{ forloop.counter }}">Clear Like</button>
+                            {% endif %}
+                            {% if disliked %}
                             <button id="recipe_button_dislike_{{ forloop.counter }}">Dislike</button>
+                            {% else %}
+                            <button id="recipe_button_clear_dislike_{{ forloop.counter }}">Clear Dislike</button>
+                            {% endif %}
                         </div>
                     </div>
                     {% empty %}
