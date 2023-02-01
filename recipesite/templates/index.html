@@ -8,12 +8,17 @@
   <link href="{% static 'css/index.css' %}" rel="stylesheet" />
 
 </head>
-
-<body class="d-flex h-100 text-center text-black">
+<div>
+{% include 'navbar.html' %}
+</div>
+<div>
+{% include 'carousel.html' %}
+</div>
+<body class="d-flex flex-column h-100 text-center text-black">
   <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
     
-    {% include 'navbar.html' %}
-    {% include 'carousel.html' %}
+    
+    
     <main class="px-3">
       <h1 style="color:#003500">Can't decide what to cook?</h1>
       <p class="lead">

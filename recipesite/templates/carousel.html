@@ -1,9 +1,24 @@
 {% load static %}
-<div
-  id="carouselExampleIndicators"
-  class="carousel slide"
-  data-bs-ride="true"
->
+<style>
+  .carousel {
+    height: 400px;
+    width: auto;
+    /* padding-top: 1em; */
+    padding-bottom: 2em;
+    position: relative;
+    top: 0px;
+  }
+  .carousel-inner {
+    height:100%;
+    width: auto;
+    padding-top: 1em;
+    padding-bottom: 3em;
+  }
+  .carousel-indicators {
+    padding-bottom: 3em;
+  }
+</style>
+<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
   <div class="carousel-indicators">
     <button
       type="button"
@@ -53,23 +68,23 @@
     </div>
   </div>
   <div class="carousel-controls bgsliderControl">
-  <button
-    class="carousel-control-prev"
-    type="button"
-    data-bs-target="#carouselExampleIndicators"
-    data-bs-slide="prev"
-  >
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
-  </button>
-  <button
-    class="carousel-control-next"
-    type="button"
-    data-bs-target="#carouselExampleIndicators"
-    data-bs-slide="next"
-  >
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
-  </button>
-</div>
+    <button
+      class="carousel-control-prev"
+      type="button"
+      data-bs-target="#carouselExampleIndicators"
+      data-bs-slide="prev"
+    >
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button
+      class="carousel-control-next"
+      type="button"
+      data-bs-target="#carouselExampleIndicators"
+      data-bs-slide="next"
+    >
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
 </div>
