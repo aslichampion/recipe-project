@@ -46,7 +46,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'recipes',
-    'main'
+    'main',
+    'members',
 ]
 
 MIDDLEWARE = [
@@ -138,3 +139,8 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Overrides Django default login redirect to 'accounts/profile/'
+LOGIN_REDIRECT_URL = '/recipes'
+
+LOGIN_URL = '/members/login/'
