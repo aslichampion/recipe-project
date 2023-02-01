@@ -1,0 +1,25 @@
+/* Custom default button */
+.btn-secondary,
+.btn-secondary:hover,
+.btn-secondary:focus {
+  color: rgb(255, 249, 180);
+  border: 0px;
+  text-shadow: none; /* Prevent inheritance from `body` */
+}
+
+.bg-white {
+  background-color: rgb(6, 42, 0)!important;
+}
+
+/*
+ * Base structure
+ */
+
+body {
+  text-shadow: 0 .02rem .1rem rgba(0, 0, 0, .5);
+  /* box-shadow: inset 0 0 5rem rgba(0, 0, 0, .5); */
+}
+
+.cover-container {
+  max-width: 42em;
+}
