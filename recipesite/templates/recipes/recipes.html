@@ -61,8 +61,10 @@
                             <div id="ingredient_measure">g</div>
                         </div>
                     </div> {% endcomment %}
-
-                    {% for hit in weeklyRecipes.hits|slice:":7" %}
+                    <div>
+                        {{ weeklyIngredients }}
+                    </div>
+                    {% comment %} {% for hit in weeklyRecipes.hits|slice:":7" %}
                         {% for ingredient in hit.recipe.ingredients %}
                             <div id="ingredient_{{ forloop.counter }}" class="ingredient">
                                 <div id="ingredient_title_{{ forloop.counter }}" class="ingredient_title">{{ ingredient.food }}</div>
@@ -74,7 +76,7 @@
                         {% endfor %}
                     {% empty %}
                         No Ingredients
-                    {% endfor %}
+                    {% endfor %} {% endcomment %}
                 </div>
             </div>
         </div>
