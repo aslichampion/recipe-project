@@ -34,7 +34,7 @@
                     {% for hit in weeklyRecipes.hits|slice:":7" %}
                     <div id="recipe_{{ forloop.counter }}">
                         <div id="recipe_title_{{ forloop.counter }}">{{ hit.recipe.label }}</div>
-                        <div id="recipe_cuisine_{{ forloop.counter }}">{{ hit.recipe.cuisineType.0 }}</div>
+                        <div id="recipe_cuisine_{{ forloop.counter }}" style="text-transform: capitalize">{{ hit.recipe.cuisineType.0 }}</div>
                         <div id="recipe_buttons_{{ forloop.counter }}">
                             {% if note.clear %}
                             <button id="recipe_button_like_{{ forloop.counter }}">Like</button>
@@ -62,7 +62,22 @@
                         </div>
                     </div> {% endcomment %}
                     <div>
-                        {{ weeklyIngredients }}
+                        <div>
+                            {% for ingredient in weeklyIngredients %}
+                            <div id="ingredient_title_{{ forloop.counter }}">{{ ingredient }}</div>
+                            {% comment %} <div id="ingredient_value_{{ forloop.counter }}">{{weeklyMeasurements.|add:forloop.counter0}}</div> {% endcomment %}
+                            {% empty %}
+                            No Recipes
+                            {% endfor %}
+                        </div>
+                        <div>
+                            {% comment %} <div> {{ weeklyMeasurements }}</div> {% endcomment %}
+                            {% comment %} {% for measure in weeklyMeasurements %}
+                            <div id="ingredient_value_{{ forloop.counter }}">{{ measure }}</div>
+                            {% empty %}
+                            No Recipes
+                            {% endfor %} {% endcomment %}
+                        </div>
                     </div>
                     {% comment %} {% for hit in weeklyRecipes.hits|slice:":7" %}
                         {% for ingredient in hit.recipe.ingredients %}

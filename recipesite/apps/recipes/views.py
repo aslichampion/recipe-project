@@ -68,11 +68,14 @@ def showRecipes(request):
     recipe_ingredients = import_data(currentWeekRecipes.current_week_recipes)
     currentWeekShopping = get_measurements(recipe_ingredients)
 
+
+
     # Loads the correct template and sets the variable name within the template as the 'context'
     template = loader.get_template('recipes/recipes.html')
     context = {
         'weeklyRecipes': currentWeekRecipes.current_week_recipes,
-        'weeklyIngredients': currentWeekShopping,
+        'weeklyIngredients': list(currentWeekShopping.keys()),
+        'weeklyMeasurements': list(currentWeekShopping.values()),
     }
     return HttpResponse(template.render(context, request))
 
@@ -103,7 +106,7 @@ def get_measurements(recipe_ingredients: list) -> tuple:
     types_of_measurements = set()  # Used to store all UNIQUE types of measurements
     
     for ingredient in recipe_ingredients:
-        food_dict = measure_dict[ingredient["food"]]
+        food_dict = measure_dict[ingredient["food"].title()]
     
         quantity = ingredient["quantity"]
         measure = ingredient["measure"]
@@ -116,7 +119,10 @@ def get_measurements(recipe_ingredients: list) -> tuple:
     
     # print(f"There are [{len(types_of_measurements)}] types of measurements listed below:")
     # print(types_of_measurements)
-    return(dict(measure_dict), types_of_measurements)
+    return(dict(measure_dict))
+
+
+    measurement_dict, types_of_measurements = get_measurements(recipe_ingredients)
 
 
 # def toggleLike():
