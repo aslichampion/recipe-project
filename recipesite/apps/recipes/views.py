@@ -75,16 +75,3 @@ def showRecipes(request):
 
 # Testing route, access at recipes/test
 # def getRecipeTest(request):
-
-
-# URL builder skeleton:
-
-# url = "https://api.edamam.com/api/recipes/v2?type=public"
-# apiId = "96581904"
-# key = "17072af2421f3c49bd3544ed58bb75ab"
-# healthLabel = "vegetarian"
-
-# def link_builder(url, apiId, key, healthLabel):
-#     return '{}&{}&{}&{}&mealType=Dinner&random=true'.format(url, apiId, key, healthLabel)
-
-# print(link_builder(url, apiId, key, healthLabel))
