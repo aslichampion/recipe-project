@@ -1,0 +1,31 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+
+<head>
+  <!-- Page title (shown in windows and tabs) -->
+  <title>Spice of Life - Recipes made easy</title>
+
+  <!-- Custom styles for this template -->
+  <link href="{% static 'css/recipes.css' %}" rel="stylesheet" />
+</head>
+
+<div>{% include 'navbar.html' %}</div>
+
+<main>
+  <section class="py-2 text-left container">
+    <div class="container">
+      <div class="album py-5 bg-none">
+        <div class="container">
+          <ul class="list-group list-group-flush">
+            {{ for ingredient in weeklyIngredients }}
+            <li class="list-group-item">{{ ingredient }}</li>
+            {% empty %}
+            No Recipes
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+{% endblock %}

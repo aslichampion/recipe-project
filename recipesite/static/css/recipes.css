@@ -1,0 +1,35 @@
+/* Custom default button */
+.btn-secondary,
+.btn-secondary:focus .btn-secondary:active {
+  color: rgb(255, 249, 180);
+  border-color: rgb(6, 42, 0);
+  text-shadow: none; /* Prevent inheritance from `body` */
+}
+
+.btn-secondary:hover {
+  background-color: rgb(9, 57, 0) !important;
+  border-color: rgb(9, 57, 0) !important;
+  color: rgb(255, 249, 180) !important;
+}
+
+.bg-white {
+  background-color: rgb(6, 42, 0) !important;
+}
+
+.btn-outline-success,
+.btn-outline-success:focus {
+  color: rgb(6, 42, 0);
+  border-color: rgb(6, 42, 0);
+}
+
+.btn-outline-success:hover {
+  color: rgb(255, 249, 180);
+  background-color: rgb(6, 42, 0);
+  border-color: rgb(6, 42, 0) !important;
+}
+
+.btn-outline-success:active {
+  color: rgb(255, 249, 180) !important;
+  background-color: rgb(6, 42, 0) !important;
+  border-color: rgb(6, 42, 0) !important;
+}

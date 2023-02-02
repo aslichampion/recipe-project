@@ -7,3 +7,6 @@ def index(request):
 
 def carousel(request):
     return render(request, 'carousel.html')
+
+def test(request):
+    return render(request, 'new.html')

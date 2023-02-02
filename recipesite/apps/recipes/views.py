@@ -71,6 +71,23 @@ def showRecipes(request):
     return HttpResponse(template.render(context, request))
 
 
+def shoppingList(request):
+
+    if not request.user.is_authenticated:
+       return redirect('/members/login')
+
+    # Getting current week recipes from database
+    currentUser = request.user
+    currentWeekRecipes = CurrentRecipes.objects.get(user_id = currentUser.id)
+
+    # Loads the correct template and sets the variable name within the template as the 'context'
+    template = loader.get_template('recipes/list.html')
+    context = {
+        'weeklyRecipes': currentWeekRecipes.current_week_recipes,
+    }
+    return HttpResponse(template.render(context, request))
+
+
 # def toggleLike():
 
 # Testing route, access at recipes/test
