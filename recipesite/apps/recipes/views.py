@@ -18,8 +18,20 @@ def saveHistory(user, recipes):
                           )
         history.save()
 
+def linkBuilder(healthLabel):
+    if healthLabel == '':
+        formattedLabel = healthLabel
+    else:
+        formattedLabel = '&health={}'.format(healthLabel)
+    return 'https://api.edamam.com/api/recipes/v2?type=public&app_id={}&app_key={}{}&mealType=Dinner&random=true'.format(config('API_ID'), config('API_KEY'), formattedLabel)
+
+# label="none" value=""
+# label="Vegetarian" value="vegetarian"
 
 def getRecipes(request):
+
+    diet = str(request.GET.get('diet'))
+    type = request.GET.get('type', 'default')
 
     if not request.user.is_authenticated:
         return redirect('/members/login')
@@ -28,7 +40,9 @@ def getRecipes(request):
     currentUser = request.user
 
     # Retrieve a week of recipes from the API
-    apiLink = "https://api.edamam.com/api/recipes/v2?type=public&app_id={}&app_key={}&health=vegetarian&mealType=Dinner&random=true".format(config('API_ID'), config('API_KEY'))
+    # apiLink = "https://api.edamam.com/api/recipes/v2?type=public&app_id={}&app_key={}&health=vegetarian&mealType=Dinner&random=true".format(config('API_ID'), config('API_KEY'))
+    
+    apiLink = linkBuilder(diet)
     apiResponse = requests.get(apiLink)
     recipes = json.loads(apiResponse.text)
     

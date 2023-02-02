@@ -15,7 +15,7 @@
     <div class="row py-lg-3">
       <div class="col-lg-6 col-md-8 mx-auto">
         <div class="btn-group">
-          <button class="btn btn-secondary btn-lg bg-white" type="button" onClick="location.href='new'">
+          <button class="btn btn-secondary btn-lg bg-white" type="button" onClick="location.href='new?diet='">
             Get New Recipes!
           </button>
           <button
@@ -26,10 +26,10 @@
           >
             <span class="visually-hidden">Toggle Dropdown</span>
           </button>
-          <ul class="dropdown-menu">
-            <a class="dropdown-item" href="#">Vegetarian</a>
-            <a class="dropdown-item" href="#">Vegan</a>
-            <a class="dropdown-item" href="#">Pescatarian</a>
+          <ul class="dropdown-menu" name="diet-preference">
+            <a class="dropdown-item" href="/recipes/new?diet=vegetarian">Vegetarian</a>
+            <a class="dropdown-item" href="/recipes/new?diet=vegan">Vegan</a>
+            <a class="dropdown-item" href="/recipes/new?diet=pescatarian">Pescatarian</a>
           </ul>
         </div>
         <button type="button" class="btn btn-lg btn-outline-success" onClick="location.href='/recipes/list'">
