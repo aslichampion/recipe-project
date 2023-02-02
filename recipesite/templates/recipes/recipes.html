@@ -11,9 +11,9 @@
 <div>{% include 'navbar.html' %}</div>
 
 <main>
-  <section class="py-2 text-center container">
+  <section class="pt-2 text-center container">
     <div class="row py-lg-3">
-      <div class="col-lg-6 col-md-8 mx-auto">
+      <div class="col-lg-6 col-md-8 mx-auto pt-5">
         <div class="btn-group">
           <button class="btn btn-secondary btn-lg bg-white" type="button" onClick="location.href='new?diet='">
             Get New Recipes!
@@ -40,7 +40,7 @@
   </section>
 
   <div class="container">
-    <div class="album py-5 bg-none">
+    <div class="album py-2 bg-none">
       <div class="container">
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
 
@@ -66,7 +66,7 @@
                       Yuck
                     </button>
                   </div>
-                  <a href="{{ hit.recipe.url }}" class="btn btn-sm btn-primary" target="_blank">
+                  <a href="{{ hit.recipe.url }}" class="btn btn-sm btn-secondary bg-white" target="_blank">
                     See Recipe
                   </a>
                 </div>

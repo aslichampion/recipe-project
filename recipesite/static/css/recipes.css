@@ -33,3 +33,8 @@
   background-color: rgb(6, 42, 0) !important;
   border-color: rgb(6, 42, 0) !important;
 }
+
+.dropdown-item:focus,
+.dropdown-item:active {
+  background-color: #64913a !important;
+}
