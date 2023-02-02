@@ -86,10 +86,15 @@ def shoppingList(request):
     currentUser = request.user
     currentWeekRecipes = CurrentRecipes.objects.get(user_id = currentUser.id)
 
+    # Shopping list builder
+    recipe_ingredients = import_data(currentWeekRecipes.current_week_recipes)
+    currentWeekShopping = get_measurements(recipe_ingredients)
+
     # Loads the correct template and sets the variable name within the template as the 'context'
     template = loader.get_template('recipes/list.html')
     context = {
         'weeklyRecipes': currentWeekRecipes.current_week_recipes,
+        'weeklyIngredients': currentWeekShopping,
     }
     return HttpResponse(template.render(context, request))
 
