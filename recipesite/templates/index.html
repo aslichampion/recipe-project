@@ -1,56 +1,55 @@
-<!doctype html>
-<html>
-    <head>
-        <title>Hello</title>
-        {% load static %}
-        <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
-    </head>
-    <body>
-        <div id="title">
-            <h1>Recipe Generator</h1>
-        </div>
-        <div id="main">
-            <div id="header" class="padding">
-                <div id="preferences">
-                    <h3>Preferences</h3>
-                </div>
-                <div id="health_labels">
-                    <form id="health">
-                        <div class="padding">
-                            <input type="checkbox" id="vegetarian" name="vegetarian" value="Vegetarian">
-                            <label for="vegetarian">Vegetarian</label>
-                            <input type="checkbox" id="vegan" name="vegan" value="Vegan">
-                            <label for="vegan">Vegan</label>
-                        </div>
-                    </form>
-                </div>
-                <div id="get_recipes">
-                    <button id="get_recipes_button">Get New Recipes</button>
-                </div>
-            </div>
-            <div id="body">
-                <div id="recipes" class="padding">
-                    <h3>Recipes</h3>
-                    <div id="recipe">
-                        <div id="recipe_title">Recipe</div>
-                        <div id="recipe_cuisine">Cuisine</div>
-                        <div id="recipe_buttons">
-                            <button id="recipe_button_like">Like</button>
-                            <button id="recipe_button_dislike">Dislike</button>
-                        </div>
-                    </div>
-                </div>
-                <div id="shopping_list" class="padding">
-                    <h3>Shopping List</h3>
-                    <div id="ingredient">
-                        <div id="ingredient_title">Ingredient</div>
-                        <div id="ingredient_quantity_measure">
-                            <div id="ingredient_quantity">100</div>
-                            <div id="ingredient_measure">g</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </body>
-</html>
+{% extends 'base.html' %} {% load static %} {% block content %}
+
+<head>
+  <!-- Page title (shown in windows and tabs) -->
+  <title>Spice of Life - Recipes made easy</title>
+
+  <!-- Custom styles for this template -->
+  <link href="{% static 'css/index.css' %}" rel="stylesheet" />
+
+</head>
+<div>
+{% include 'navbar.html' %}
+</div>
+<div>
+{% include 'carousel.html' %}
+</div>
+<body class="d-flex flex-column h-100 text-center text-black">
+  <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+    
+    
+    
+    <main class="px-3">
+      <h1 style="color:#003500">Can't decide what to cook?</h1>
+      <p class="lead">
+        Spice of life is here to make home cooking easy, fun and delicious.
+        Planning out meals can be time consuming and frustrating, especially if
+        you can't decide on a recipe. Yes, you could just make the same old
+        meal, or, you could go for a meal delivery service, but that can get
+        expensive.<br /><br />
+
+        Instead, let us pick out some meals and write a shopping list. So you
+        can focus on two things, the cooking, and life.<br /><br />
+
+        If you ask us, we've got the easy bit...
+      </p>
+      <p class="lead">
+        <a
+          href="#"
+          class="btn btn-lg btn-secondary fw-bold border-yellow bg-white"
+          >Get Cooking!</a
+        >
+      </p>
+    </main>
+
+    <footer class="mt-auto" style="color:#003500">
+      <p>
+        Copyright © 2023 Spice of Life. All rights reserved. <br />
+        Made possible with
+        <a href ="https://makers.tech" style="color:#003500">Makers Academy</a>
+      </p>
+    </footer>
+  </div>
+</body>
+
+{% endblock %}

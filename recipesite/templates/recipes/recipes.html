@@ -1,84 +1,85 @@
-<!doctype html>
-{% load static %}
-<html>
-    <head>
-        <title>Hello</title>
-        <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
-    </head>
-    <body>
-        <div id="title">
-            <h1>Recipe Generator</h1>
+{% extends 'base.html' %} {% load static %} {% block content %}
+
+<head>
+  <!-- Page title (shown in windows and tabs) -->
+  <title>Spice of Life - Recipes made easy</title>
+
+  <!-- Custom styles for this template -->
+  <link href="{% static 'css/recipes.css' %}" rel="stylesheet" />
+</head>
+
+<div>{% include 'navbar.html' %}</div>
+
+<main>
+  <section class="py-2 text-center container">
+    <div class="row py-lg-3">
+      <div class="col-lg-6 col-md-8 mx-auto">
+        <div class="btn-group">
+          <button class="btn btn-secondary btn-lg bg-white" type="button" onClick="location.href='new'">
+            Get New Recipes!
+          </button>
+          <button
+            type="button"
+            class="btn btn-lg btn-secondary dropdown-toggle dropdown-toggle-split bg-white"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            <span class="visually-hidden">Toggle Dropdown</span>
+          </button>
+          <ul class="dropdown-menu">
+            <a class="dropdown-item" href="#">Vegetarian</a>
+            <a class="dropdown-item" href="#">Vegan</a>
+            <a class="dropdown-item" href="#">Pescatarian</a>
+          </ul>
         </div>
-        <div id="main">
-            <div id="header" class="padding">
-                <div id="preferences">
-                    <h3>Preferences</h3>
+        <button type="button" class="btn btn-lg btn-outline-success" onClick="location.href='/recipes/list'">
+          Shopping List
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <div class="container">
+    <div class="album py-5 bg-none">
+      <div class="container">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+
+
+          {% for hit in weeklyRecipes.hits|slice:":7" %}
+          <div class="col">
+            <div class="card shadow-sm">
+              
+              <img class="card-img-top" src="{{ hit.recipe.image }}"/>
+
+              <div class="card-body">
+                <p class="card-text">{{ hit.recipe.label }}</p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="btn-group">
+                    <button
+                      type="button"
+                      class="btn btn-sm btn-outline-success"
+                    >
+                      Yum
+                    </button>
+
+                    <button type="button" class="btn btn-sm btn-outline-danger">
+                      Yuck
+                    </button>
+                  </div>
+                  <a href="{{ hit.recipe.url }}" class="btn btn-sm btn-primary" target="_blank">
+                    See Recipe
+                  </a>
                 </div>
-                <div id="health_labels">
-                    <form id="health">
-                        <div class="padding">
-                            <input type="checkbox" id="vegetarian" name="vegetarian" value="Vegetarian">
-                            <label for="vegetarian">Vegetarian</label>
-                            <input type="checkbox" id="vegan" name="vegan" value="Vegan">
-                            <label for="vegan">Vegan</label>
-                        </div>
-                    </form>
-                </div>
-                <div id="get_recipes">
-                    <button id="get_recipes_button" onClick="location.href='new'">Get New Recipes</button>
-                </div>
+              </div>
             </div>
-            <div id="body">
-                <div id="recipes" class="padding">
-                    <h3>Recipes</h3>
-                    {% for hit in weeklyRecipes.hits|slice:":7" %}
-                    <div id="recipe_{{ forloop.counter }}">
-                        <div id="recipe_title_{{ forloop.counter }}">{{ hit.recipe.label }}</div>
-                        <div id="recipe_cuisine_{{ forloop.counter }}">{{ hit.recipe.cuisineType.0 }}</div>
-                        <div id="recipe_buttons_{{ forloop.counter }}">
-                            {% if note.clear %}
-                            <button id="recipe_button_like_{{ forloop.counter }}">Like</button>
-                            {% else %}
-                            <button id="recipe_button_clear_like_{{ forloop.counter }}">Clear Like</button>
-                            {% endif %}
-                            {% if disliked %}
-                            <button id="recipe_button_dislike_{{ forloop.counter }}">Dislike</button>
-                            {% else %}
-                            <button id="recipe_button_clear_dislike_{{ forloop.counter }}">Clear Dislike</button>
-                            {% endif %}
-                        </div>
-                    </div>
-                    {% empty %}
-                        No Recipes
-                    {% endfor %}
-                </div>
-                <div id="shopping_list" class="padding">
-                    <h3>Shopping List</h3>
-                    {% comment %} <div id="ingredient">
-                        <div id="ingredient_title">Ingredient</div>
-                        <div id="ingredient_quantity_measure">
-                            <div id="ingredient_quantity">100</div>
-                            <div id="ingredient_measure">g</div>
-                        </div>
-                    </div> {% endcomment %}
-                    <div>
-                        {{ weeklyIngredients }}
-                    </div>
-                    {% comment %} {% for hit in weeklyRecipes.hits|slice:":7" %}
-                        {% for ingredient in hit.recipe.ingredients %}
-                            <div id="ingredient_{{ forloop.counter }}" class="ingredient">
-                                <div id="ingredient_title_{{ forloop.counter }}" class="ingredient_title">{{ ingredient.food }}</div>
-                                <div class="ingredient_quantity_measure">
-                                    <div id="ingredient_quantity_{{ forloop.counter }}" class="padding">{{ ingredient.quantity }}</div>
-                                    <div id="ingredient_measure_{{ forloop.counter }}">{{ ingredient.measure }}</div>
-                                </div>
-                            </div>
-                        {% endfor %}
-                    {% empty %}
-                        No Ingredients
-                    {% endfor %} {% endcomment %}
-                </div>
-            </div>
+          </div>
+          {% empty %}
+            No Recipes
+          {% endfor %}
         </div>
-    </body>
-</html>
+      </div>
+    </div>
+  </div>
+</main>
+
+{% endblock %}

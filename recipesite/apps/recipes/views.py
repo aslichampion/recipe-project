@@ -77,6 +77,23 @@ def showRecipes(request):
     return HttpResponse(template.render(context, request))
 
 
+def shoppingList(request):
+
+    if not request.user.is_authenticated:
+       return redirect('/members/login')
+
+    # Getting current week recipes from database
+    currentUser = request.user
+    currentWeekRecipes = CurrentRecipes.objects.get(user_id = currentUser.id)
+
+    # Loads the correct template and sets the variable name within the template as the 'context'
+    template = loader.get_template('recipes/list.html')
+    context = {
+        'weeklyRecipes': currentWeekRecipes.current_week_recipes,
+    }
+    return HttpResponse(template.render(context, request))
+
+
 def import_data(jsonOutput: str) -> list:
 
     # Import recipe data from database and return one long list of ingredients
@@ -91,6 +108,7 @@ def import_data(jsonOutput: str) -> list:
         for ingredient in ingredients_list
     ]
     return compact_recipe_ingredients
+
 
 def get_measurements(recipe_ingredients: list) -> tuple:
 
@@ -117,6 +135,7 @@ def get_measurements(recipe_ingredients: list) -> tuple:
     # print(f"There are [{len(types_of_measurements)}] types of measurements listed below:")
     # print(types_of_measurements)
     return(dict(measure_dict), types_of_measurements)
+
 
 
 # def toggleLike():
