@@ -72,7 +72,7 @@ def showRecipes(request):
     template = loader.get_template('recipes/recipes.html')
     context = {
         'weeklyRecipes': currentWeekRecipes.current_week_recipes,
-        'weeklyIngredients': currentWeekShopping,
+        'weeklyIngredients': list(currentWeekShopping.keys()),
     }
     return HttpResponse(template.render(context, request))
 
