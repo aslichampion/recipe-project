@@ -1,5 +1,5 @@
 """
-ASGI config for recipesite project.
+ASGI config for the recipesite project.
 
 It exposes the ASGI callable as a module-level variable named ``application``.
 

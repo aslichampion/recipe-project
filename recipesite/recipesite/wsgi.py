@@ -1,5 +1,5 @@
 """
-WSGI config for recipesite project.
+WSGI config for the recipesite project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 

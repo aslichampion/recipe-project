@@ -44,10 +44,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
-    'recipes',
-    'main',
-    'members',
+    'apps.members',
+    'apps.recipes',
+    'apps.main',
 ]
 
 MIDDLEWARE = [
@@ -65,7 +64,7 @@ ROOT_URLCONF = 'recipesite.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ["./templates", "**/templates", str(BASE_DIR / "templates")],
+        'DIRS': ["./templates", str(BASE_DIR / "templates")],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

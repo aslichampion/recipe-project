@@ -1,4 +1,4 @@
-# Recipe Generator App - Group Final Project
+# Recipe Generator App — Group Final Project
 
 
 ## What does it do?
@@ -13,8 +13,8 @@
 
 ## How does it do it?
 
-* Currently uses the Edamam API to source recipe content.
-* Further details of recommendation engine will be added here as the feature is developed.
+* Currently, this project uses the Edamam API to source recipe content.
+* Further details of the recommendation engine will be added here as the feature is developed.
 * And an explanation of the shopping list generation logic will be added here as that gets developed too.
 
 ## How do I run it locally?
@@ -40,4 +40,4 @@ Python Virtual Environments: https://frankcorso.dev/setting-up-python-environmen
 
 Django Web Framework Documentation: https://docs.djangoproject.com
 
-PostgreSQL Documentation - Creating Users : https://www.postgresql.org/docs/8.0/user-attributes.html
+PostgreSQL Documentation — Creating Users : https://www.postgresql.org/docs/8.0/user-attributes.html

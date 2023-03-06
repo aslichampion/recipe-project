@@ -1,85 +1,89 @@
 {% extends 'base.html' %} {% load static %} {% block content %}
 
-<head>
-  <!-- Page title (shown in windows and tabs) -->
-  <title>Spice of Life - Recipes made easy</title>
+    <head>
+        <!-- Page title (shown in windows and tabs) -->
+        <title>{% block title %}My Recipes{% endblock title %}</title>
 
-  <!-- Custom styles for this template -->
-  <link href="{% static 'css/recipes.css' %}" rel="stylesheet" />
-</head>
+        <!-- Custom styles for this template -->
+        <link href="{% static 'css/recipes.css' %}" rel="stylesheet"/>
+    </head>
 
-<div>{% include 'navbar.html' %}</div>
+    <div>{% include 'navbar.html' %}</div>
 
-<main>
-  <section class="pt-2 text-center container">
-    <div class="row py-lg-3">
-      <div class="col-lg-6 col-md-8 mx-auto pt-5">
-        <div class="btn-group">
-          <button class="btn btn-secondary btn-lg bg-white" type="button" onClick="location.href='new?diet='">
-            Get New Recipes!
-          </button>
-          <button
-            type="button"
-            class="btn btn-lg btn-secondary dropdown-toggle dropdown-toggle-split bg-white"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-          >
-            <span class="visually-hidden">Toggle Dropdown</span>
-          </button>
-          <ul class="dropdown-menu" name="diet-preference">
-            <a class="dropdown-item" href="/recipes/new?diet=vegetarian">Vegetarian</a>
-            <a class="dropdown-item" href="/recipes/new?diet=vegan">Vegan</a>
-            <a class="dropdown-item" href="/recipes/new?diet=pescatarian">Pescatarian</a>
-          </ul>
-        </div>
-        <button type="button" class="btn btn-lg btn-outline-success" onClick="location.href='/recipes/list'">
-          Shopping List
-        </button>
-      </div>
-    </div>
-  </section>
-
-  <div class="container">
-    <div class="album py-2 bg-none">
-      <div class="container">
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-
-
-          {% for hit in weeklyRecipes.hits|slice:":7" %}
-          <div class="col">
-            <div class="card shadow-sm">
-              
-              <img class="card-img-top" src="{{ hit.recipe.image }}"/>
-
-              <div class="card-body">
-                <p class="card-text">{{ hit.recipe.label }}</p>
-                <div class="d-flex justify-content-between align-items-center">
-                  <div class="btn-group">
-                    <button
-                      type="button"
-                      class="btn btn-sm btn-outline-success"
-                    >
-                      Yum
+    <main>
+        <section class="pt-2 text-center container">
+            <div class="row py-lg-3">
+                <div class="col-lg-6 col-md-8 mx-auto pt-5">
+                    <div class="btn-group">
+                        <button class="btn btn-secondary btn-lg bg-white" type="button"
+                                onClick="location.href='new?diet='">
+                            Get New Recipes!
+                        </button>
+                        <button
+                                type="button"
+                                class="btn btn-lg btn-secondary dropdown-toggle dropdown-toggle-split bg-white"
+                                data-bs-toggle="dropdown"
+                                aria-expanded="false"
+                        >
+                            <span class="visually-hidden">Toggle Dropdown</span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li class="dropdown-item" onclick="location.href='new?diet=vegetarian';">Vegetarian</li>
+                            <li class="dropdown-item" onclick="location.href='new?diet=vegan';">Vegan</li>
+                            <li class="dropdown-item" onclick="location.href='new?diet=pescatarian';">Pescatarian</li>
+                        </ul>
+                    </div>
+                    <button type="button" class="btn btn-lg btn-outline-success"
+                            onClick="location.href='/recipes/list'">
+                        Shopping List
                     </button>
-
-                    <button type="button" class="btn btn-sm btn-outline-danger">
-                      Yuck
-                    </button>
-                  </div>
-                  <a href="{{ hit.recipe.url }}" class="btn btn-sm btn-secondary bg-white" target="_blank">
-                    See Recipe
-                  </a>
                 </div>
-              </div>
             </div>
-          </div>
-          {% empty %}
-            No Recipes
-          {% endfor %}
+        </section>
+
+        <div class="container">
+            <div class="album py-2 bg-none">
+                <div class="container">
+                    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+
+
+                        {% for hit in slicedRecipes %}
+                            <div class="col">
+                                <div class="card shadow-sm">
+
+                                    <img class="card-img-top" src="{{ hit.recipe.image }}"
+                                         alt="Example of cooked recipe."/>
+
+                                    <div class="card-body">
+                                        <p class="card-text">{{ hit.recipe.label }}</p>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div class="btn-group">
+                                                <button
+                                                        type="button"
+                                                        class="btn btn-sm btn-outline-success"
+                                                >
+                                                    Yum
+                                                </button>
+
+                                                <button type="button" class="btn btn-sm btn-outline-danger">
+                                                    Yuck
+                                                </button>
+                                            </div>
+                                            <a href="{{ hit.recipe.url }}" class="btn btn-sm btn-secondary bg-white"
+                                               target="_blank">
+                                                See Recipe
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {% empty %}
+                            No Recipes
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  </div>
-</main>
+    </main>
 
 {% endblock %}

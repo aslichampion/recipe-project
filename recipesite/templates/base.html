@@ -1,28 +1,29 @@
 <!DOCTYPE html>
 {% load static %}
 <html lang="en" class="h-100">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+<head>
+    <!-- Page title (shown in windows and tabs) -->
+    <title>{% block title %}{% endblock title %}</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <!-- Bootstrap core CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <!-- Favicons -->
-    <link rel="apple-touch-icon" href="path/to/image.png" sizes="180x180" />
-    <!-- <link rel="mask-icon" href="path/to/image.svg" color="#7952b3" /> -->
-    <link rel="icon" href="{% static 'images/logo-sm.png' %}" />
-    <link rel="icon" href="{% static 'images/logo-sm.png' %}" sizes="32x32" type="image/png" />
-    <link rel="icon" href="{% static 'images/logo-sm.png' %}" sizes="16x16" type="image/png" />
-    <!-- <link rel="manifest" href="path/to/manifest.json" /> -->
+    <link rel="icon" href="{% static 'images/logo-sm.png' %}"/>
+    <link rel="icon" href="{% static 'images/logo-sm.png' %}" sizes="32x32" type="image/png"/>
+    <link rel="icon" href="{% static 'images/logo-sm.png' %}" sizes="16x16" type="image/png"/>
     <style>
-      body {
-        background: #dcedb9;
-      }
+        body {
+            background: #dcedb9;
+        }
     </style>
-    <title> Spice of Life </title>
-  </head>
-  <body>
-    {% block content %}
-    {% endblock %}
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
-  </body>
+</head>
+<body>
+{% block content %}
+{% endblock %}
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous"></script>
+</body>
 </html>

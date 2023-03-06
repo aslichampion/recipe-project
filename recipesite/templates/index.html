@@ -1,56 +1,54 @@
 {% extends 'base.html' %} {% load static %} {% block content %}
 
-<head>
-  <!-- Page title (shown in windows and tabs) -->
-  <title>Spice of Life - Recipes made easy</title>
+    <head>
+        <!-- Page title (shown in windows and tabs) -->
+        <title>{% block title %}Spice of Life - Recipes made easy{% endblock title %}</title>
 
-  <!-- Custom styles for this template -->
-  <link href="{% static 'css/index.css' %}" rel="stylesheet" />
+        <!-- Custom styles for this template -->
+        <link href="{% static 'css/index.css' %}" rel="stylesheet"/>
+    </head>
+    <div>
+        {% include 'navbar.html' %}
+    </div>
+    <div>
+        {% include 'carousel.html' %}
+    </div>
 
-</head>
-<div>
-{% include 'navbar.html' %}
-</div>
-<div>
-{% include 'carousel.html' %}
-</div>
+    <body class="d-flex flex-column h-100 text-center text-black">
+    <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
 
-<body class="d-flex flex-column h-100 text-center text-black">
-  <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
-    
-    
-    
-    <main class="px-3">
-      <h1 style="color:#003500">Can't decide what to cook?</h1>
-      <p class="lead">
-        Spice of life is here to make home cooking easy, fun and delicious.
-        Planning out meals can be time consuming and frustrating, especially if
-        you can't decide on a recipe. Yes, you could just make the same old
-        meal, or, you could go for a meal delivery service, but that can get
-        expensive.<br /><br />
 
-        Instead, let us pick out some meals and write a shopping list. So you
-        can focus on two things, the cooking, and life.<br /><br />
+        <main class="px-3">
+            <h1 style="color:#003500">Can't decide what to cook?</h1>
+            <p class="lead">
+                Spice of life is here to make home cooking easy, fun and delicious.
+                Planning out meals can be time-consuming and frustrating, especially if
+                you can't decide on a recipe. Yes, you could just make the same old
+                meal, or, you could go for a meal delivery service, but that can get
+                expensive.<br/><br/>
 
-        If you ask us, we've got the easy bit...
-      </p>
-      <p class="lead py-5">
-        <a
-          href="/members/login"
-          class="btn btn-lg btn-secondary fw-bold border-yellow bg-white"
-          >Get Cooking!</a
-        >
-      </p>
-    </main>
+                Instead, let us pick out some meals and write a shopping list. So you
+                can focus on two things, the cooking, and life.<br/><br/>
 
-    <footer class="mt-auto" style="color:#003500">
-      <p>
-        Copyright © 2023 Spice of Life. All rights reserved. <br />
-        Made possible with
-        <a href ="https://makers.tech" style="color:#003500">Makers Academy</a>
-      </p>
-    </footer>
-  </div>
-</body>
+                If you ask us, we've got the easy bit...
+            </p>
+            <p class="lead py-5">
+                <a
+                        href="/members/login"
+                        class="btn btn-lg btn-secondary fw-bold border-yellow bg-white"
+                >Get Cooking!</a
+                >
+            </p>
+        </main>
+
+        <footer class="mt-auto" style="color:#003500">
+            <p>
+                Copyright © 2023 Spice of Life. All rights reserved. <br/>
+                Made possible with
+                <a href="https://makers.tech" style="color:#003500">Makers Academy</a>
+            </p>
+        </footer>
+    </div>
+    </body>
 
 {% endblock %}
